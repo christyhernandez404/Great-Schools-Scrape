@@ -38,23 +38,22 @@ for address in addresses:
     # Type the address character by character
     for char in address:
         input_element.send_keys(char)
-        time.sleep(0.1)  # Adjust timing if needed
+        time.sleep(0.1) 
 
-    time.sleep(5)  # Adjust timing if needed
+    time.sleep(5) 
 
     # Now, you can proceed with clicking on the primary details or any other actions
     list_element = driver.find_element(
         By.CLASS_NAME, 'primary-details').click()
 
-    time.sleep(3)  # Adjust timing if needed
+    time.sleep(3)
 
     # Find and click on the search button if necessary
     search_element = driver.find_element(
         By.CLASS_NAME, 'search_container_icon_image')
     search_element.click()
 
-    time.sleep(5)  # Adjust timing if needed
-
+    time.sleep(5) 
     cards = driver.find_elements(By.CLASS_NAME, 'assigned')
     for card in cards:
         # Find only the first assigned school for each type
@@ -67,17 +66,15 @@ for address in addresses:
         elif not middle_schools and not middle_ratings:
             for school, rating in zip(card.find_elements(By.CLASS_NAME, 'header'), card.find_elements(By.CLASS_NAME, 'gs-rating')):
                 middle_schools.append(school.text)
-                # Extract the first number from rating
                 rating_number = re.search(r'\d+', rating.text).group()
                 middle_ratings.append(rating_number)
         elif not high_schools and not high_ratings:
             for school, rating in zip(card.find_elements(By.CLASS_NAME, 'header'), card.find_elements(By.CLASS_NAME, 'gs-rating')):
                 high_schools.append(school.text)
-                # Extract the first number from rating
                 rating_number = re.search(r'\d+', rating.text).group()
                 high_ratings.append(rating_number)
         else:
-            break  # Exit the loop if all data has been captured
+            break  
 
 # Create a DataFrame
 data = {
