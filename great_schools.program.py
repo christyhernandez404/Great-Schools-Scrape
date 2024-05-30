@@ -23,7 +23,7 @@ driver = webdriver.Chrome(service=Service(
 
 driver.get("https://www.greatschools.org/")
 
-# Initialize empty lists to store data
+# empty lists to store data
 elementary_schools = []
 elementary_ratings = []
 middle_schools = []
@@ -42,13 +42,11 @@ for address in addresses:
 
     time.sleep(5) 
 
-    # Now, you can proceed with clicking on the primary details or any other actions
     list_element = driver.find_element(
         By.CLASS_NAME, 'primary-details').click()
 
     time.sleep(3)
 
-    # Find and click on the search button if necessary
     search_element = driver.find_element(
         By.CLASS_NAME, 'search_container_icon_image')
     search_element.click()
